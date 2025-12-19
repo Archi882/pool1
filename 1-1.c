@@ -1,44 +1,39 @@
 #include <stdio.h>
 #include <math.h>
-
-/**
- * @brief Рассчитывает функцию А по заданной формуле
- * @param x - значение параметра x
- * @param y - значение параметра y
- * @param z - значение параметра z
- * @return возвращает значение функции А
+/*
+ * @brief рассчитывает значение функции A
+ * @param x значение параметра x
+ * @param y значение параметра y
+ * @param z значение параметра z
+ * @return рассчитанное значения
  */
-double a(const double x, const double y, const double z);
-
-/**
- * @brief Рассчитывает функцию B по заданной формуле
- * @param x - значение параметра x
- * @param y - значение параметра y
- * @param z - значение параметра z
- * @return возвращает значение функции B
+double defA(const double x, const double y, const double z);
+/*
+ * @brief рассчитывает значение функции B
+ * @param x значение параметра x
+ * @param y значение параметра y
+ * @param z значение параметра z
+ * @return рассчитанное значения
  */
-double b(const double x, const double y, const double z);
-
-/**
- * @brief точка входа в программу
- * @return возвращает 0, если программа выполнена корректно
+double defB(const double x, const double y, const double z);
+/*
+ * @brief Точка входа программы
+ * @return Вернет 0, если программа выполнена корректно. Иначе 1
  */
-int main() {
+int main(void)
+{
     const double x = 0.61;
     const double y = 3.4;
     const double z = 16.5;
-    
-    printf("\nx = %.2lf\ny = %.1lf\nz = %.1lf\n", x, y, z);
-    printf("a = %lf\nb = %lf\n", a(x, y, z), b(x, y, z));
-    
+    printf("A = %.6f\n", defA(x, y, z));
+    printf("B = %.6f\n", defB(x, y, z));
     return 0;
 }
-
-double a(const double x, const double y, const double z) {
-    return pow(x, 3) * pow(tan(x + y), 4) + (z / sqrt(x + y));
+double defA(const double x, const double y, const double z)
+{
+    return pow(x, 3) * pow(tan(pow(x + y, 2)), 2) + z / pow(x + y, .5);
 }
-
-double b(const double x, const double y, const double z) {
+double defB(const double x, const double y, const double z)
+{
     return (y * pow(x, 2) - z) / (exp(z * x) - 1);
 }
-
