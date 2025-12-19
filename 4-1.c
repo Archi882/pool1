@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
-#include<stdbool.h>  // Для типа bool
+#include <stdbool.h>
 
 /**
 * @brief Считывает значение, введённое с клавиатуры, с проверкой ввода
@@ -11,24 +11,24 @@
 int getValid();
 
 /**
-* @brief Считает сумму согласно условию №1 (отрицательные, кратные 10)
-* @param arr - массив
-* @param size - размер массива
-* @return Посчитанное значение
+* @brief Считывает положительное целое число (>=1) и возвращает его как size_t
+* @return Корректный размер массива (>= 1)
 */
-int defForTask1(const int* arr, const size_t size);
-
-/**
-* @brief Проверяет что переменная не меньше единицы
-* @param input - значение проверяемой переменной
-*/
-size_t positiveInput();  // Изменено: возвращает size_t
+size_t positiveInput(void);
 
 /**
 * @brief Проверяет, лежит ли число в указанном диапазоне
 * @param input - значение проверяемой переменной
 */
 void checkValue(const int input, const int min, const int max);
+
+/**
+* @brief Считает сумму согласно условию №1 (отрицательные, кратные 10)
+* @param arr - массив
+* @param size - размер массива
+* @return Посчитанное значение
+*/
+int defForTask1(const int* arr, const size_t size);
 
 /**
 * @brief Заменяет первые k элементов на те же в обратном порядке (условие №2)
@@ -126,7 +126,7 @@ int main(void)
     system("chcp 1251");
 
     printf("Введите размер массива: ");
-    size_t size = positiveInput();  // Изменено: используем positiveInput()
+    size_t size = positiveInput();
 
     int* A = calloc(size, sizeof(int));
     check_pointer(A);
@@ -277,7 +277,7 @@ void defPrintArr(const int* arr, const size_t size)
     }
 }
 
-size_t positiveInput()  // Изменено: новая функция вместо checkValueForN
+size_t positiveInput(void)
 {
     int input = getValid();
     if (input < 1)
@@ -295,8 +295,7 @@ int defForTask1(const int* arr, const size_t size)
     int summ = 0;
     for (size_t i = 0; i < size; i++)
     {
-        // Исправлено: берем абсолютное значение для проверки кратности 10
-        if ((arr[i] < 0) && ((abs(arr[i]) % 10) == 0))
+        if ((arr[i] < 0) && (abs(arr[i]) % 10 == 0))
         {
             summ += arr[i];
         }
@@ -320,18 +319,17 @@ void defForTask3(const int* arr, const size_t size, const int target)
 {
     check_pointer(arr);
 
-    bool found = false;  // Изменено: тип bool вместо int
+    bool found = false;
     printf("\nПары соседних элементов с произведением %d:\n", target);
 
     for (size_t i = 0; i < size - 1; i++)
     {
-        // Изменено: int product вместо long long
-        int product = arr[i] * arr[i + 1];  // Исправлено: тип int
+        int product = arr[i] * arr[i + 1];
         if (product == target)
         {
             printf("Элементы A[%zu] = %d и A[%zu] = %d (произведение = %d)\n",
                 i, arr[i], i + 1, arr[i + 1], product);
-            found = true;  // Исправлено: true вместо 1
+            found = true;
         }
     }
 
