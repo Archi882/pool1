@@ -3,10 +3,9 @@
 #include <stdlib.h>
 #include <float.h>
 #include <locale.h>
-
 /**
  * @brief Рассчитывает значение функции y = 3x - 4*ln(x) - 5 в точке x
- * @param x - точка X
+ * @param x - точка
  * @return Рассчитанное значение
  */
 const double function(const double x);
@@ -18,9 +17,9 @@ const double function(const double x);
 double defValid();
 
 /**
- * @brief Проверка значения начала и конца интервала
- * @param start - Начало интервала
- * @param end - Конец интервала
+ * @brief Проверяет значения начала и конца интервала
+ * @param start - начало интервала
+ * @param end - конец интервала
  */
 void checkEndStart(const double start, const double end);
 
@@ -32,28 +31,28 @@ void checkStep(const double step);
 
 /**
  * @brief Проверяет, определена ли функция в точке x
- * @param x - Значение параметра x
- * @return Возвращает 0, если функция определена, 1 — если не определена
+ * @param x - значение параметра x
+ * @return Возвращает 1, если функция не определена, 0 — если определена
  */
 _Bool checkX(const double x);
 
 /**
  * @brief Точка входа в программу
- * @return Возвращает 0, если программа выполнена корректно, иначе 1
+ * @return Возвращает 0, если программа была выполнена корректно, иначе 1
  */
 int main(void)
 {
     setlocale(LC_ALL, "");
 
-    printf("Enter the start of the interval: ");
+    printf("Введите начало интервала: ");
     double start = defValid();
-    printf("Enter the end of the interval: ");
+    printf("Введите конец интервала: ");
     double end = defValid();
-    printf("Enter step: ");
+    printf("Введите шаг: ");
     double step = defValid();
 
-    printf("Task: y = 3x - 4*ln(x) - 5\n");
-    printf("interval: [%.1lf; %.1lf], step: %.1lf\n", start, end, step);
+    printf("Задача: y = 3x - 4*ln(x) - 5\n");
+    printf("Интервал: [%.1lf; %.1lf], шаг: %.1lf\n", start, end, step);
 
     checkEndStart(start, end);
     checkStep(step);
@@ -63,7 +62,7 @@ int main(void)
     {
         if (checkX(x))
         {
-            printf("%-10.2lf%s\n", x, "Function not defined");
+            printf("%-10.2lf%s\n", x, "Функция не определена");
         }
         else
         {
@@ -94,7 +93,7 @@ void checkEndStart(const double start, const double end)
 {
     if (!(start < end))
     {
-        printf("The beginning must be less than the end.\n");
+        printf("Начало должно быть меньше конца.\n");
         exit(1);
     }
 }
@@ -103,12 +102,12 @@ void checkStep(const double step)
 {
     if (step <= DBL_EPSILON)
     {
-        printf("The step must be positive.\n");
+        printf("Шаг должен быть положительным.\n");
         exit(1);
     }
 }
 
 _Bool checkX(const double x)
 {
-    return (x <= DBL_EPSILON);
+    return (x <= DBL_EPSILON); 
 }
